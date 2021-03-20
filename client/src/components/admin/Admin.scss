@@ -1,0 +1,33 @@
+@import 'status/Status';
+
+.admin {
+  padding: 2%;
+
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .link {
+      margin-bottom: 2%;
+    }
+  }
+
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+
+  @media only screen and (max-width: 768px) {
+    .main {
+      flex-direction: column;
+
+      > * {
+        margin-top: 10%;
+      }
+    }
+  }
+}

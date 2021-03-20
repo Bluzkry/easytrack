@@ -1,0 +1,17 @@
+.status {
+  min-width: 25%;
+
+  .status-content {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      margin: 5%;
+    }
+
+    .status-status {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

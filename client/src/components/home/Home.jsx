@@ -22,8 +22,8 @@ const Home = () => {
   useEffect(() => {
     async function fetchPizzas() {
       try {
-        const pizzasList = await axios('/pizzas');
-        setPizzas(mockPizzasList);
+        const { data: pizzasList } = await axios('/pizzas');
+        setPizzas(pizzasList);
       } catch (error) {
         console.error('error');
         setPizzas(mockPizzasList);
