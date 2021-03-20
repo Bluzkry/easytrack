@@ -1,0 +1,33 @@
+{
+  "name": "easytrack-server",
+  "version": "1.0.0",
+  "description": "This is the easytrack server.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start-dev": "npx nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bluzkry/easytrack.git"
+  },
+  "keywords": [
+    "easytrack",
+    "server",
+    "pizza"
+  ],
+  "author": "Alexander Zou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bluzkry/easytrack/issues"
+  },
+  "homepage": "https://github.com/Bluzkry/easytrack#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
