@@ -23,7 +23,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchPizzas() {
       try {
-        const { data: pizzasList } = await axios('/pizzas');
+        const { data: pizzasList } = await axios('api/pizzas');
         setPizzas(pizzasList);
       } catch (error) {
         console.error('error');
@@ -60,7 +60,7 @@ const Home = () => {
   const confirmOrder = () => {
     async function postOrder() {
       try {
-        const { data: orderResponse } = await axios.post('/order', order);
+        const { data: orderResponse } = await axios.post('api/order', order);
         setPizzas(mockPizzasList);
 
         const deliveryTime  = Math.floor(orderResponse.deliveryTime/60000);

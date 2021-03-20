@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "start-dev": "npx nodemon app.js",
+    "build": "rm -r build && cd ../client && npm install && npm run build && cp -r build ../server/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,7 +26,8 @@
   "homepage": "https://github.com/Bluzkry/easytrack#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

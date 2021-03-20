@@ -8,7 +8,7 @@ const Pizzas = ({ pizzas, addPizza, confirmed }) => (
     </div>
 
     <ul className='list-group'>
-      { pizzas.map(pizza => <Pizza key={pizza.id} pizza={pizza} addPizza={addPizza} confirmed={confirmed} />) }
+      { pizzas.length > 0 && pizzas.map(pizza => <Pizza key={pizza.id} pizza={pizza} addPizza={addPizza} confirmed={confirmed} />) }
     </ul>
   </div>
 );

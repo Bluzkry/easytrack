@@ -19,7 +19,7 @@ const Admin = () => {
   useEffect(() => {
     async function fetchOrders() {
       try {
-        const { data } = await axios('./orders');
+        const { data } = await axios('api/orders');
         setOriginalOrders(data);
         organizeOrders(data)
       } catch (error) {
@@ -62,7 +62,7 @@ const Admin = () => {
   const save = async () => {
     const newOrders = [_.cloneDeep(pending), _.cloneDeep(processing), _.cloneDeep(delivered)];
     try {
-      const { data } = await axios.post('/orders', newOrders);
+      const { data } = await axios.post('api/orders', newOrders);
       setOriginalOrders(data);
     } catch (error) {
       console.error('error');
