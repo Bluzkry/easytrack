@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import Pizzas from "./components/Pizzas/Pizzas";
 import Order from "./components/Order";
 import Confirmation from "./components/Confirmation";
 
-const pizzasList = [
+const mockPizzasList = [
     {
       "id": 1,
       "name": "Margherita",
@@ -55,9 +56,9 @@ const pizzasList = [
       ]
     }
   ];
-const orderResponse = {
+const mockOrderResponse = {
   "success": true,
-  "deliveryTime": 2100000
+  "deliveryTime": 35
 };
 
 function App() {
@@ -69,8 +70,18 @@ function App() {
   const [confirmation, setConfirmation] = useState({ success: false, deliveryTime: 0 });
 
   useEffect(() => {
-    setPizzas(pizzasList);
-  });
+    async function fetchPizzas() {
+      try {
+        const pizzasList = await axios('/pizzas');
+        setPizzas(mockPizzasList);
+      } catch (error) {
+        console.error('error');
+        setPizzas(mockPizzasList);
+      }
+    }
+
+    fetchPizzas();
+  }, []);
 
   const addPizza = ({ id: orderId, name, price }) => {
     const inOrder = order.pizzas.some(({ id }) => id === orderId);
@@ -97,12 +108,24 @@ function App() {
   };
 
   const confirmOrder = () => {
-    const deliveryTime  = Math.floor(orderResponse.deliveryTime/60000);
+    async function postOrder() {
+      try {
+        const { data: orderResponse } = await axios.post('/orders', order);
+        setPizzas(mockPizzasList);
 
-    setConfirmation({
-      ...orderResponse,
-      deliveryTime,
-    });
+        const deliveryTime  = Math.floor(orderResponse.deliveryTime/60000);
+
+        setConfirmation({
+          ...orderResponse,
+          deliveryTime,
+        });
+      } catch (error) {
+        console.error('error');
+        setPizzas(mockOrderResponse);
+      }
+    }
+
+    postOrder();
   };
   
   return (

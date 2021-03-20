@@ -6,7 +6,7 @@ const Pizzas = ({ pizzas, addPizza, confirmed }) => (
     <h2>Pizzas</h2>
 
     <ul>
-      { pizzas.map(pizza => <Pizza pizza={pizza} addPizza={addPizza} confirmed={confirmed} />) }
+      { pizzas.map(pizza => <Pizza key={pizza.id} pizza={pizza} addPizza={addPizza} confirmed={confirmed} />) }
     </ul>
   </div>
 );
