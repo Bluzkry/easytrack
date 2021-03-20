@@ -9,35 +9,52 @@ To better assess a candidates development skills, we would like to provide the f
 
 ## How to Run the Application
 
-Install the dependencies for the client:
+### Main Method
+
+This application should work simply through the server. To do this, run the following steps in the **root folder** of the application.
+
+```bash
+npm install
+npm run build
+npm start
+```
+
+Visit http://localhost:8080.
+
+### Back-up Method
+
+If the main method doesn't work, we can also try to run the applications on the server and client in separate Terminal windows. To do this, implement the following steps.
+
+Go to the client and install the dependencies for the client:
 
 ```bash
 cd client
 npm install
 ```
 
-Install the dependencies for the server:
+In the "client" folder, start the server:
 
 ```bash
-cd server
+npm start
+```
+
+Open a new Terminal window/tab.
+
+Then go to the **root folder** and install the dependencies for the server. Then build the server application.
+
+```bash
+cd ../
 npm install
+npm run build
 ```
 
 Start the server:
 
 ```bash
-cd client
 npm start
 ```
 
-Open a new Terminal window/tab and start the client:
-
-```bash
-cd client
-npm start
-```
-
-Visit [http://localhost:3000](http://localhost:3000)
+Visit [http://localhost:3000](http://localhost:3000).
 
 ## Project description
 
