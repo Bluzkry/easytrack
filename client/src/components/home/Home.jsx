@@ -53,14 +53,14 @@ const Home = () => {
 
     setOrder((prevOrder) => ({
       total: prevOrder.total + price,
-      pizzas: newPizzas
+      pizzas: newPizzas,
     }));
   };
 
   const confirmOrder = () => {
     async function postOrder() {
       try {
-        const { data: orderResponse } = await axios.post('/orders', order);
+        const { data: orderResponse } = await axios.post('/order', order);
         setPizzas(mockPizzasList);
 
         const deliveryTime  = Math.floor(orderResponse.deliveryTime/60000);

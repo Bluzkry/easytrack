@@ -52,6 +52,16 @@ const Admin = () => {
 
     organizeOrders(newOrders);
   };
+  
+  const save = async () => {
+    const newOrders = [...pending, ...processing, ...delivered];
+    try {
+      const { data: orders } = await axios.post('/orders', newOrders);
+      setOrders(orders);
+    } catch (error) {
+      console.error('error');
+    }
+  };
 
   return (
     <div className='admin'>
@@ -59,7 +69,7 @@ const Admin = () => {
         <div className='link'>
           <Link to="/">Click here to go to the page for users.</Link>
         </div>
-        <button className='btn btn-success'>Save</button>
+        <button className='btn btn-success' onClick={save}>Save</button>
       </div>
 
       <div className='main'>
