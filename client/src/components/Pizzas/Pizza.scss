@@ -1,0 +1,18 @@
+.pizzas {
+  border: 1px lightgray;
+}
+
+.pizza {
+  margin: 2% 0;
+}
+
+.pizza-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1%;
+}
+
+.pizza-button {
+  height: 1%;
+}

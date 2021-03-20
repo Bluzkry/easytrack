@@ -1,13 +1,18 @@
 import React from 'react';
 import Ingredients from './Ingredients';
+import Pricing from '../common/Pricing';
 
 const Pizza = ({ pizza, addPizza, confirmed }) => (
-  <li>
-    <h4>{ pizza.name }</h4>
-    <p>Price: { pizza.price }</p>
+  <li className='pizza list-group-item bg-light border border-light rounded'>
+    <Pricing title={pizza.name} amount={pizza.price} />
+
+    <div className='pizza-content'>
     <Ingredients ingredients={pizza.ingredients} />
 
-    { !confirmed && <button onClick={() => addPizza(pizza)}>Add</button> }
+    { !confirmed && (
+      <button className='pizza-button btn btn-secondary' onClick={() => addPizza(pizza)}>Add It!</button>
+    ) }
+    </div>
   </li>
 );
 

@@ -1,0 +1,49 @@
+@import 'components/Order';
+@import './components/Pizzas/Pizza';
+@import './components/Pizzas/Ingredients';
+
+.app {
+  padding: 3% 5%;
+  background-image: url('/assets/pizza-background.jpg');
+  background-size: cover;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2%;
+}
+
+.main > * {
+  width: 45%;
+}
+
+.pricing {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    flex-direction: column-reverse;
+  }
+
+  .main > * {
+    width: 100%;
+    margin-top: 10%;
+  }
+}
+
+.title-container {
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    padding: 1%;
+    border-radius: 5px;
+  }
+}

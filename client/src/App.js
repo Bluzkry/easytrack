@@ -1,64 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css';
-import Pizzas from "./components/Pizzas/Pizzas";
-import Order from "./components/Order";
-import Confirmation from "./components/Confirmation";
+import './App.scss';
+import Pizzas from './components/Pizzas/Pizzas';
+import Order from './components/Order';
+import Confirmation from './components/Confirmation';
 
 const mockPizzasList = [
     {
-      "id": 1,
-      "name": "Margherita",
-      "price": 5,
-      "ingredients": [
-        "tomato",
-        "mozzarella"
+      'id': 1,
+      'name': 'Margherita',
+      'price': 5,
+      'ingredients': [
+        'tomato',
+        'mozzarella'
       ]
     },
     {
-      "id": 2,
-      "name": "Bufala",
-      "price": 6,
-      "ingredients": [
-        "tomato",
-        "mozarella di bufala"
+      'id': 2,
+      'name': 'Bufala',
+      'price': 6,
+      'ingredients': [
+        'tomato',
+        'mozarella di bufala'
       ]
     },
     {
-      "id": 3,
-      "name": "Romana",
-      "price": 5,
-      "ingredients": [
-        "tomato",
-        "mozzarella",
-        "anchovies",
-        "oregano",
-        "oil"
+      'id': 3,
+      'name': 'Romana',
+      'price': 5,
+      'ingredients': [
+        'tomato',
+        'mozzarella',
+        'anchovies',
+        'oregano',
+        'oil'
       ]
     },
     {
-      "id": 4,
-      "name": "Diavola",
-      "price": 7.5,
-      "ingredients": [
-        "tomato",
-        "mozzarella",
-        "spicy salami"
+      'id': 4,
+      'name': 'Diavola',
+      'price': 7.5,
+      'ingredients': [
+        'tomato',
+        'mozzarella',
+        'spicy salami'
       ]
     },
     {
-      "id": 5,
-      "name": "Pizza Bianca",
-      "price": 5,
-      "ingredients": [
-        "mozzarella",
-        "oregano"
+      'id': 5,
+      'name': 'Pizza Bianca',
+      'price': 5,
+      'ingredients': [
+        'mozzarella',
+        'oregano'
       ]
     }
   ];
 const mockOrderResponse = {
-  "success": true,
-  "deliveryTime": 35
+  'success': true,
+  'deliveryTime': 35
 };
 
 function App() {
@@ -127,10 +127,12 @@ function App() {
 
     postOrder();
   };
-  
+
   return (
-    <div className="App">
-      <div className="App-header">
+    <div className='app'>
+      <Confirmation confirmation={confirmation} />
+      
+      <div className='main'>
         <Pizzas
           pizzas={pizzas}
           addPizza={addPizza}
@@ -142,10 +144,6 @@ function App() {
           confirmOrder={confirmOrder}
           confirmed={confirmation.success}
         />
-      </div>
-
-      <div className="App-header">
-        <Confirmation confirmation={confirmation} />
       </div>
     </div>
   );
