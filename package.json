@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "start-dev": "npx nodemon app.js",
-    "build": "rm -r build && cd ../client && npm install && npm run build && cp -r build ../server/",
+    "build": "./build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
