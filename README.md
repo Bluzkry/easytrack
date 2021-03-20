@@ -7,21 +7,37 @@ To better assess a candidates development skills, we would like to provide the f
 * [Git](http://git-scm.com/)
 * [npm](https://www.npmjs.org/)
 
-## Installation
+## How to Run the Application
 
-Install the dependencies
+Install the dependencies for the client:
 
 ```bash
+cd client
 npm install
 ```
 
-Start the server
+Install the dependencies for the server:
 
 ```bash
-node server.js
+cd server
+npm install
 ```
 
-Visit [http://localhost:8080](http://localhost:8080)
+Start the server:
+
+```bash
+cd client
+npm start
+```
+
+Open a new Terminal window/tab and start the client:
+
+```bash
+cd client
+npm start
+```
+
+Visit [http://localhost:3000](http://localhost:3000)
 
 ## Project description
 
