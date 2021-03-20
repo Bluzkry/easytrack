@@ -5,61 +5,8 @@ import Pizzas from './components/Pizzas/Pizzas';
 import Order from './components/Order';
 import Confirmation from './components/Confirmation';
 
-const mockPizzasList = [
-    {
-      'id': 1,
-      'name': 'Margherita',
-      'price': 5,
-      'ingredients': [
-        'tomato',
-        'mozzarella'
-      ]
-    },
-    {
-      'id': 2,
-      'name': 'Bufala',
-      'price': 6,
-      'ingredients': [
-        'tomato',
-        'mozarella di bufala'
-      ]
-    },
-    {
-      'id': 3,
-      'name': 'Romana',
-      'price': 5,
-      'ingredients': [
-        'tomato',
-        'mozzarella',
-        'anchovies',
-        'oregano',
-        'oil'
-      ]
-    },
-    {
-      'id': 4,
-      'name': 'Diavola',
-      'price': 7.5,
-      'ingredients': [
-        'tomato',
-        'mozzarella',
-        'spicy salami'
-      ]
-    },
-    {
-      'id': 5,
-      'name': 'Pizza Bianca',
-      'price': 5,
-      'ingredients': [
-        'mozzarella',
-        'oregano'
-      ]
-    }
-  ];
-const mockOrderResponse = {
-  'success': true,
-  'deliveryTime': 35
-};
+const mockPizzasList = require('./mockDb/pizzas');
+const mockOrderResponse = require('./mockDb/order');
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
@@ -121,7 +68,7 @@ function App() {
         });
       } catch (error) {
         console.error('error');
-        setPizzas(mockOrderResponse);
+        setConfirmation(mockOrderResponse);
       }
     }
 
