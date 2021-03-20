@@ -1,6 +1,6 @@
 import React from 'react';
 import Ingredients from './Ingredients';
-import Pricing from '../common/Pricing';
+import Pricing from '../../common/Pricing';
 
 const Pizza = ({ pizza, addPizza, confirmed }) => (
   <li className='pizza list-group-item bg-light border border-light rounded'>

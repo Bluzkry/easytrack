@@ -1,11 +1,18 @@
-@import 'components/Order';
-@import './components/Pizzas/Pizza';
-@import './components/Pizzas/Ingredients';
+@import 'order/Order';
+@import 'pizzas/Pizza';
+@import 'pizzas/Ingredients';
 
 .app {
   padding: 3% 5%;
-  background-image: url('/assets/pizza-background.jpg');
+  background-image: url('../../assets/pizza-background.jpg');
   background-size: cover;
+}
+
+.link {
+  width: 360px;
+  padding: 2px;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .main {

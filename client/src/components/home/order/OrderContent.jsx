@@ -1,5 +1,5 @@
 import React from 'react';
-import Pricing from './common/Pricing';
+import Pricing from '../../common/Pricing';
 
 const OrderContent = ({ order }) => (
   <div className='order-content'>
