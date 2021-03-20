@@ -12,6 +12,15 @@
     .link {
       margin-bottom: 2%;
     }
+
+    .header-buttons {
+      display: flex;
+      height: 50%;
+
+      .save-button {
+        margin-left: 5%;
+      }
+    }
   }
 
   .main {

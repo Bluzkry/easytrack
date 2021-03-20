@@ -6,9 +6,9 @@ const isCollision = (newId, orders) => orders.some(({ id }) => id === newId);
 const addOrder = order => {
   const { mockOrders } = db.mockDb;
   const newOrder = {
+    ...order,
     id: Math.random(),
     status: 'pending',
-    ...order,
   };
 
   isCollision(newOrder.id, mockOrders)
@@ -17,7 +17,7 @@ const addOrder = order => {
 };
 
 const editOrders = orders => {
-  db.mockDb.mockOrders = orders;
+  db.mockDb.mockOrders = orders.flat();
 };
 
 const db = {

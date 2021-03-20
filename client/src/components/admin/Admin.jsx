@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import {
   Link
 } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
+import _ from 'lodash';
 import './Admin.scss';
-import Status from "./status/Status";
+import Status from './status/Status';
 
 const mockOrders = require('../../mockDb/orders');
 
 const Admin = () => {
+  const [originalOrders, setOriginalOrders] = useState([]);
   const [orders, setOrders] = useState([]);
   const [pending, setPending] = useState([]);
   const [processing, setProcessing] = useState([]);
@@ -18,12 +20,12 @@ const Admin = () => {
     async function fetchOrders() {
       try {
         const { data } = await axios('./orders');
-        setOrders(data);
+        setOriginalOrders(data);
         organizeOrders(data)
       } catch (error) {
         console.error(error);
-        setOrders(mockOrders);
-        organizeOrders()
+        setOriginalOrders(mockOrders);
+        organizeOrders(mockOrders)
       }
     }
     
@@ -31,45 +33,56 @@ const Admin = () => {
   }, []);
 
   const organizeOrders = n => {
-    const _pending = n.filter(({ status }) => status === 'pending');
-    const _processing = n.filter(({ status }) => status === 'processing');
-    const _delivered = n.filter(({ status }) => status === 'delivered');
+    const _n = _.cloneDeep(n);
+    const _pending = _.cloneDeep(n.filter(({ status }) => status === 'pending'));
+    const _processing = _.cloneDeep(n.filter(({ status }) => status === 'processing'));
+    const _delivered = _.cloneDeep(n.filter(({ status }) => status === 'delivered'));
 
     setPending(_pending);
     setProcessing(_processing);
     setDelivered(_delivered);
+    setOrders(_n);
   };
 
   const changeOrder = ({ target }, id) => {
-    let newOrders = [ ...orders ];
-    newOrders = newOrders.map(order => {
-      if (order.id === id) {
-        order.status = target.value;
-        return order;
+    let newOrders = _.cloneDeep(orders);
+    newOrders = newOrders.map(o => {
+      if (o.id === id) {
+        return {
+          ...o,
+          status: target.value,
+        };
       }
-      return order;
+      return o;
     });
 
     organizeOrders(newOrders);
   };
   
   const save = async () => {
-    const newOrders = [...pending, ...processing, ...delivered];
+    const newOrders = [_.cloneDeep(pending), _.cloneDeep(processing), _.cloneDeep(delivered)];
     try {
-      const { data: orders } = await axios.post('/orders', newOrders);
-      setOrders(orders);
+      const { data } = await axios.post('/orders', newOrders);
+      setOriginalOrders(data);
     } catch (error) {
       console.error('error');
     }
+  };
+
+  const reset = () => {
+    organizeOrders(originalOrders);
   };
 
   return (
     <div className='admin'>
       <div className='header'>
         <div className='link'>
-          <Link to="/">Click here to go to the page for users.</Link>
+          <Link to='/'>Click here to go to the page for users.</Link>
         </div>
-        <button className='btn btn-success' onClick={save}>Save</button>
+        <div className='header-buttons'>
+          <button className='btn btn-warning' onClick={reset}>Reset</button>
+          <button className='save-button btn btn-success' onClick={save}>Save</button>
+        </div>
       </div>
 
       <div className='main'>

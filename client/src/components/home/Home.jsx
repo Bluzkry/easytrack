@@ -3,6 +3,7 @@ import {
   Link,
 } from 'react-router-dom';
 import axios from 'axios';
+import _ from 'lodash';
 import './Home.scss';
 import Pizzas from './pizzas/Pizzas';
 import Order from './order/Order';
@@ -36,16 +37,15 @@ const Home = () => {
   const addPizza = ({ id: orderId, name, price }) => {
     const inOrder = order.pizzas.some(({ id }) => id === orderId);
 
-    let newPizzas = [ ...order.pizzas ];
+    let newPizzas = _.cloneDeep(order.pizzas);
     if (inOrder) {
-      newPizzas = newPizzas.map(oldPizza => {
-        if (oldPizza.id === orderId) {
-          const newPizza = { ...oldPizza };
-          newPizza.quantity++;
-          return newPizza;
+      newPizzas = newPizzas.map(pizza => {
+        if (pizza.id === orderId) {
+          pizza.quantity++;
+          return pizza;
         }
 
-        return oldPizza;
+        return pizza;
       })
     } else {
       newPizzas.push({ id: orderId, name, quantity: 1 });
@@ -78,12 +78,17 @@ const Home = () => {
     postOrder();
   };
 
+  const reset = () => {
+    setOrder({ pizzas: [], total: 0 });
+    setConfirmation({ success: false, deliveryTime: 0 });
+  };
+
   return (
     <div className='app'>
       <div className='link'>
         <Link to='/admin'>Click here to go to the page for pizza shop staff.</Link>
       </div>
-      <Confirmation confirmation={confirmation} />
+      <Confirmation confirmation={confirmation} reset={reset} />
 
       <div className='main'>
         <Pizzas
@@ -96,6 +101,7 @@ const Home = () => {
           order={order}
           confirmOrder={confirmOrder}
           confirmed={confirmation.success}
+          reset={reset}
         />
       </div>
     </div>
